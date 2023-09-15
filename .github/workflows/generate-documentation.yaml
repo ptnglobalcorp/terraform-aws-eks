@@ -1,8 +1,8 @@
 name: 'Validate and Generate module documentation'
 
 on:
-  workflow_dispatch:
-
+  workflow_dispatch:  
+  - dev
 jobs:
   
   validate:
