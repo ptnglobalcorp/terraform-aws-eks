@@ -2,8 +2,6 @@ name: 'Validate and Generate module documentation'
 
 on:
   workflow_dispatch:
-  pull_request:
-  push:
   
 jobs:
   
@@ -28,11 +26,12 @@ jobs:
   docs:
     name: 'generate documentation'
     runs-on: ubuntu-latest
-    steps:
+    steps:             
+    
       - name: 'Checkout'
         uses: actions/checkout@v3
-        with:
-          ref: ${{ github.event.pull_request.head.ref }}
+        # with:
+        #   ref: ${{ github.event.pull_request.head.ref }}
 
       - name: Render terraform docs inside the README.md and push changes back to PR branch
         uses: terraform-docs/gh-actions@v1.0.0
@@ -41,7 +40,7 @@ jobs:
           output-file: README.md
           output-method: inject
           git-push: "true"
-      
+
       - name: Render terraform docs inside the README.md and push changes back to PR branch for example
         uses: terraform-docs/gh-actions@v1.0.0
         with:
